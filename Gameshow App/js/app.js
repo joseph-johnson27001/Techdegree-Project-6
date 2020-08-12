@@ -61,12 +61,19 @@ qwerty.addEventListener("click", checkLetter);
 function checkLetter(e) {
   let userInput = e.target.innerHTML.toUpperCase();
   let letters = document.getElementsByClassName('letter');
+  //INSERT HERE THE IF STATEMENT FOR IF ITS NOT QWERTY
   for ( let i = 0; i < questionArray.length; i++) {
     if ( userInput == questionArray[i]) {
       letters[i].classList.add("show");
-    }
-   checkWin();
-} }
+      checkWin();
+  }}
+  if ( !questionArray.includes(userInput)) {
+    missedResponse += 1;
+    checkWin();
+    return;
+  }
+
+}
 
 //Check Win function
 
@@ -84,5 +91,5 @@ function checkWin() {
       heading.innerHTML = "Sorry, You Lost!"
       overlay.style.display = 'flex';
       missedResponse = 0;
-    }
+    } return;
 }
