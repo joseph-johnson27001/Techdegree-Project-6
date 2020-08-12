@@ -64,13 +64,9 @@ function checkLetter(e) {
   for ( let i = 0; i < questionArray.length; i++) {
     if ( userInput == questionArray[i]) {
       letters[i].classList.add("show");
-      checkWin();
-      return;
     }
-  }
-   missedResponse = missedResponse + 1;
    checkWin();
-}
+} }
 
 //Check Win function
 
