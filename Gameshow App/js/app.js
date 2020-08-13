@@ -2,8 +2,8 @@
 
 const phrases = ['Arsenal Are The Best',
   'Kevin Arnold',
-  'Its Chicken Kiev Day',
-  'Salted Caramel Ice Cream',
+  'I Am Your Father',
+  'Atticus Pelter',
   'Lets Go To South Africa'
 ]
 
@@ -16,7 +16,7 @@ const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
 let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
-
+let hearts = document.querySelectorAll('#scoreboard img');
 // Event listener for the Start Game
 
 startButton.addEventListener('click', () => {
@@ -69,7 +69,7 @@ function checkLetter(e) {
   for ( let i = 0; i < questionArray.length; i++) {
     if ( !questionArray.includes(userInput) ) {
       missedResponse += 1;
-      tries[0].parentElement.removeChild(tries[0]);
+      hearts[missedResponse - 1].src = "images/lostHeart.png";
       checkWin();
       return;
     }
@@ -83,6 +83,7 @@ function checkLetter(e) {
 // New Game function
 
 function newGame() {
+  restoreHearts();
   missedResponse = 0;
   chosen = [];
   list.innerHTML = "";
@@ -111,3 +112,10 @@ function checkWin() {
       overlay.style.display = 'flex';
   } return ;
 };
+
+//Function to restore hearts
+
+function restoreHearts() {
+for ( let i = 0; i < 5; i ++) {
+  hearts[i].src = "images/liveHeart.png"
+}};
