@@ -1,10 +1,10 @@
 // ARRAYS:
 
-const phrases = ['Arsenal Are The Best',
-  'Kevin Arnold',
+const phrases = ['Its A Trap',
+  'Luke Skywalker',
   'I Am Your Father',
-  'Atticus Pelter',
-  'Lets Go To South Africa'
+  'Millennium Falcon',
+  'Darth Vader'
 ]
 
 //VARIABLES:
@@ -21,18 +21,20 @@ let hearts = document.querySelectorAll('#scoreboard img');
 
 startButton.addEventListener('click', () => {
   newGame();
+  startButton.innerHTML = "Play Again?"
 });
 
-//Return a random phrase from an ARRAYS
+//PICK RANDOM PHRASE FROM ARRAY
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
 };
 
-// Make an array of letters from questionPhrase.
+// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY
 
 function makeQuestionLetters() {
   let letter = document.createElement('li');
+  letter.classList.add('fade');
   let gameLetters = questionPhrase.split('');
   for ( let i = 0; i < gameLetters.length; i++ ) {
     let item = document.createElement('LI');
@@ -52,7 +54,7 @@ function makeQuestionLetters() {
   }
 };
 
-//Event listener for when user clicks a button
+//EVENT LISTENER FOR USER CLICKING START BUTOTON
 qwerty.addEventListener("click", checkLetter);
 
 function checkLetter(e) {
@@ -80,7 +82,7 @@ function checkLetter(e) {
   }}
 };
 
-// New Game function
+// NEW GAME Function
 
 function newGame() {
   restoreHearts();
@@ -96,7 +98,7 @@ function newGame() {
   makeQuestionLetters(questionPhrase);
 }
 
-//Check Win function
+//CHECK WIN FUNCTION
 
 function checkWin() {
   let heading = document.querySelector('h2');
@@ -113,7 +115,7 @@ function checkWin() {
   } return ;
 };
 
-//Function to restore hearts
+//FUNCTION TO RESTORE HEARTS AT START OF GAME
 
 function restoreHearts() {
 for ( let i = 0; i < 5; i ++) {
