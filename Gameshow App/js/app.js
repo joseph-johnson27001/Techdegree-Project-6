@@ -6,9 +6,6 @@ const phrases = ['Arsenal Are The Best',
   'Salted Caramel Ice Cream',
   'Lets Go To South Africa'
 ]
-  let questionArray = [];
-  let chosen = [];
-  let show = [];
 
 //VARIABLES:
 
@@ -17,7 +14,6 @@ const buttons = qwerty.getElementsByTagName('button');
 const phrase = document.getElementById('phrase');
 const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
-let missedResponse = 0;
 let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
 
