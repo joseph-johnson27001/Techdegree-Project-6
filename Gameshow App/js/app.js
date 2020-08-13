@@ -87,6 +87,13 @@ function checkLetter(e) {
 // New Game function
 
 function newGame() {
+  missedResponse = 0;
+  chosen = [];
+  list.innerHTML = "";
+  show = [];
+  showLetters = [];
+  questionArray = [];
+  questionPhrase = randomPhrase(phrases).toUpperCase();
   overlay.style.display = "none";
   randomPhrase(phrases);
   makeQuestionLetters(questionPhrase);
@@ -102,23 +109,9 @@ function checkWin() {
       overlay.className = 'win';
       heading.innerHTML = "CONGRATULATIONS. YOU WON!"
       overlay.style.display = 'flex';
-      missedResponse = 0;
-      chosen = [];
-      list.innerHTML = "";
-      show = [];
-      showLetters = [];
-      questionArray = [];
-      questionPhrase = randomPhrase(phrases).toUpperCase();
   } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
       heading.innerHTML = "Sorry, You Lost!"
       overlay.style.display = 'flex';
-      missedResponse = 0;
-      chosen = [];
-      list.innerHTML = "";
-      show = [];
-      showLetters = [];
-      questionArray = [];
-      questionPhrase = randomPhrase(phrases).toUpperCase();
   } return ;
 };
