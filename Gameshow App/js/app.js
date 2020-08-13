@@ -24,9 +24,7 @@ let tries = document.getElementsByClassName('tries');
 // Event listener for the Start Game
 
 startButton.addEventListener('click', () => {
-  overlay.style.display = "none";
-  randomPhrase(phrases);
-  makeQuestionLetters(questionPhrase);
+  newGame();
 });
 
 //Return a random phrase from an ARRAYS
@@ -86,6 +84,14 @@ function checkLetter(e) {
   }}
 };
 
+// New Game function
+
+function newGame() {
+  overlay.style.display = "none";
+  randomPhrase(phrases);
+  makeQuestionLetters(questionPhrase);
+}
+
 //Check Win function
 
 function checkWin() {
@@ -102,6 +108,7 @@ function checkWin() {
       show = [];
       showLetters = [];
       questionArray = [];
+      questionPhrase = randomPhrase(phrases).toUpperCase();
   } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
       heading.innerHTML = "Sorry, You Lost!"
@@ -112,14 +119,6 @@ function checkWin() {
       show = [];
       showLetters = [];
       questionArray = [];
+      questionPhrase = randomPhrase(phrases).toUpperCase();
   } return ;
 };
-
-// function to restore hearts
-
-function restoreHearts() {
-  for ( let i = 0; i < 5; i++ )
-  if ( tries.length < 5 ) {
-    tries.appendChild(images);
-  }
-}
