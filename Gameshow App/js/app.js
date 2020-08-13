@@ -6,7 +6,9 @@ const phrases = ['Arsenal Are The Best',
   'Salted Caramel Ice Cream',
   'Lets Go To South Africa'
 ]
-  const questionArray = [];
+  let questionArray = [];
+  let chosen = [];
+  let show = [];
 
 //VARIABLES:
 
@@ -17,10 +19,11 @@ const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
 let missedResponse = 0;
 let questionPhrase = randomPhrase(phrases).toUpperCase();
+let tries = document.getElementsByClassName('tries');
 
 // Event listener for the Start Game
 
-  startButton.addEventListener('click', () => {
+startButton.addEventListener('click', () => {
   overlay.style.display = "none";
   randomPhrase(phrases);
   makeQuestionLetters(questionPhrase);
@@ -30,7 +33,7 @@ let questionPhrase = randomPhrase(phrases).toUpperCase();
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
-}
+};
 
 // Make an array of letters from questionPhrase.
 
@@ -46,14 +49,14 @@ function makeQuestionLetters() {
       item.appendChild(document.createTextNode(gameLetters[i]));
       letter.appendChild(item);
       list.appendChild(letter);
-    } else {
+  } else {
       item.className = 'space';
       item.appendChild(document.createTextNode(gameLetters[i]));
       letter.appendChild(item);
       list.appendChild(letter);
     }
   }
-}
+};
 
 //Event listener for when user clicks a button
 qwerty.addEventListener("click", checkLetter);
@@ -61,19 +64,27 @@ qwerty.addEventListener("click", checkLetter);
 function checkLetter(e) {
   let userInput = e.target.innerHTML.toUpperCase();
   let letters = document.getElementsByClassName('letter');
-  //INSERT HERE THE IF STATEMENT FOR IF ITS NOT QWERTY
+    if (userInput.length !== 1 ) {
+      return;
+    }
+    if ( !chosen.includes(userInput) ) {
+      chosen.push(userInput);
+  } else {
+      return;
+    }
   for ( let i = 0; i < questionArray.length; i++) {
-    if ( userInput == questionArray[i]) {
-      letters[i].classList.add("show");
+    if ( !questionArray.includes(userInput) ) {
+      missedResponse += 1;
+      tries[0].parentElement.removeChild(tries[0]);
+      checkWin();
+      return;
+    }
+    else if ( userInput == questionArray[i]) {
+      letters[i].classList.add("show", "chosen");
+      show.push(userInput);
       checkWin();
   }}
-  if ( !questionArray.includes(userInput)) {
-    missedResponse += 1;
-    checkWin();
-    return;
-  }
-
-}
+};
 
 //Check Win function
 
@@ -86,10 +97,29 @@ function checkWin() {
       heading.innerHTML = "CONGRATULATIONS. YOU WON!"
       overlay.style.display = 'flex';
       missedResponse = 0;
-    } else if ( missedResponse > 4 ) {
+      chosen = [];
+      list.innerHTML = "";
+      show = [];
+      showLetters = [];
+      questionArray = [];
+  } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
       heading.innerHTML = "Sorry, You Lost!"
       overlay.style.display = 'flex';
       missedResponse = 0;
-    } return;
+      chosen = [];
+      list.innerHTML = "";
+      show = [];
+      showLetters = [];
+      questionArray = [];
+  } return ;
+};
+
+// function to restore hearts
+
+function restoreHearts() {
+  for ( let i = 0; i < 5; i++ )
+  if ( tries.length < 5 ) {
+    tries.appendChild(images);
+  }
 }
