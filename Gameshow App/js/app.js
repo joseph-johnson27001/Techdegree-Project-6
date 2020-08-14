@@ -66,12 +66,12 @@ function checkLetter(e) {
   let letters = document.getElementsByClassName('letter');
     if (userInput.length !== 1 ) {
       return;
-    }
+  }
     if ( !chosen.includes(userInput) ) {
       chosen.push(userInput);
   } else {
       return;
-    }
+  }
   for ( let i = 0; i < questionArray.length; i++) {
     if ( !questionArray.includes(userInput) ) {
       missedResponse += 1;
