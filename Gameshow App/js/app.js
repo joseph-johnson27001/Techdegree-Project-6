@@ -97,7 +97,7 @@ function newGame() {
   overlay.style.display = "none";
   randomPhrase(phrases);
   makeQuestionLetters(questionPhrase);
-}
+};
 
 //CHECK WIN FUNCTION
 
