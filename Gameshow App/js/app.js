@@ -15,7 +15,6 @@ const phrase = document.getElementById('phrase');
 const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
 let questionPhrase = randomPhrase(phrases).toUpperCase();
-let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
 // Event listener for the Start Game
@@ -119,6 +118,6 @@ function checkWin() {
 //FUNCTION TO RESTORE HEARTS AT START OF GAME
 
 function restoreHearts() {
-for ( let i = 0; i < 5; i ++) {
-  hearts[i].src = "images/liveHeart.png"
-}};
+  for ( let i = 0; i < 5; i ++) {
+    hearts[i].src = "images/liveHeart.png"
+  }};
