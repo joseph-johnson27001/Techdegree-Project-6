@@ -1,4 +1,6 @@
-// ARRAYS:
+//--------------------------------------------------------------------------
+// ARRAYS
+//--------------------------------------------------------------------------
 
 const phrases = ['Its A Trap',
   'Luke Skywalker',
@@ -7,7 +9,9 @@ const phrases = ['Its A Trap',
   'Darth Vader'
 ]
 
-//VARIABLES:
+//--------------------------------------------------------------------------
+// VARAIBLES
+//--------------------------------------------------------------------------
 
 const qwerty = document.getElementById('qwerty');
 const buttons = qwerty.getElementsByTagName('button');
@@ -17,19 +21,31 @@ const list = document.querySelector('ul');
 let questionPhrase = randomPhrase(phrases).toUpperCase();
 let hearts = document.querySelectorAll('#scoreboard img');
 
+//--------------------------------------------------------------------------
+// EVENT LISTERNERS
+//--------------------------------------------------------------------------
+
 // Event listener for the Start Game
 
 startButton.addEventListener('click', () => {
   newGame();
 });
 
-//PICK RANDOM PHRASE FROM ARRAY
+// Event listener for checking letter
+
+qwerty.addEventListener("click", checkLetter);
+
+//--------------------------------------------------------------------------
+// FUNCTIONS
+//--------------------------------------------------------------------------
+
+//Pick random phrase from Array
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
 };
 
-// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY
+// Make letters from chosen phrase into an array
 
 function makeQuestionLetters() {
   let letter = document.createElement('li');
@@ -53,8 +69,7 @@ function makeQuestionLetters() {
   }
 };
 
-//EVENT LISTENER FOR USER CLICKING START BUTOTON
-qwerty.addEventListener("click", checkLetter);
+// Check Letter Function
 
 function checkLetter(e) {
   let userInput = e.target.innerHTML.toUpperCase();
@@ -81,7 +96,7 @@ function checkLetter(e) {
   }}
 };
 
-// NEW GAME Function
+// New Game Function
 
 function newGame() {
   restoreHearts();
@@ -98,7 +113,7 @@ function newGame() {
   makeQuestionLetters(questionPhrase);
 };
 
-//CHECK WIN FUNCTION
+//Check Win Function
 
 function checkWin() {
   let heading = document.querySelector('h2');
@@ -106,18 +121,18 @@ function checkWin() {
   let showLetters = document.getElementsByClassName('show');
     if ( classLetters.length == showLetters.length ) {
       overlay.className = 'win';
-      heading.innerHTML = "CONGRATULATIONS. YOU WON!"
+      heading.innerHTML = "CONGRATULATIONS. YOU WON!";
       overlay.style.display = 'flex';
   } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
-      heading.innerHTML = "Sorry, You Lost!"
+      heading.innerHTML = "Sorry, You Lost!";
       overlay.style.display = 'flex';
   } return ;
 };
 
-//FUNCTION TO RESTORE HEARTS AT START OF GAME
+// Function to restore hearts at beginning of game
 
 function restoreHearts() {
   for ( let i = 0; i < 5; i ++) {
-    hearts[i].src = "images/liveHeart.png"
+    hearts[i].src = "images/liveHeart.png";
   }};
