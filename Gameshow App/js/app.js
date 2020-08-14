@@ -18,7 +18,7 @@ let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
-// Event listener for the Start Game
+// EVENT LISTENER FOR START OF GAME:
 
 startButton.addEventListener('click', () => {
   newGame();
@@ -42,19 +42,23 @@ function makeQuestionLetters() {
     if ( gameLetters[i] !== ' ' ) {
       questionArray.push(gameLetters[i]);
       item.className = "letter";
-      item.appendChild(document.createTextNode(gameLetters[i]));
-      letter.appendChild(item);
-      list.appendChild(letter);
+      appendChild()
   } else {
       item.className = 'space';
-      item.appendChild(document.createTextNode(gameLetters[i]));
-      letter.appendChild(item);
-      list.appendChild(letter);
+      appendChild()
     }
   }
 };
 
-//EVENT LISTENER FOR USER CLICKING START BUTOTON
+// APPEND CHILD FUNCTION
+
+function appendChild() {
+  item.appendChild(document.createTextNode(gameLetters[i]));
+  letter.appendChild(item);
+  list.appendChild(letter);
+}
+
+// EVENT LISTENER FOR USER CLICKING START BUTOTON
 qwerty.addEventListener("click", checkLetter);
 
 function checkLetter(e) {
@@ -82,7 +86,7 @@ function checkLetter(e) {
   }}
 };
 
-// NEW GAME Function
+// NEW GAME FUNCTION
 
 function newGame() {
   restoreHearts();
