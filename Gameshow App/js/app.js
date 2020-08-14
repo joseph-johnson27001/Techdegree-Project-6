@@ -1,4 +1,4 @@
-// ARRAYS:
+// ARRAYS..................................................................................
 
 const phrases = ['Its A Trap',
   'Luke Skywalker',
@@ -7,7 +7,7 @@ const phrases = ['Its A Trap',
   'Darth Vader'
 ]
 
-//VARIABLES:
+// VARIABLES...............................................................................
 
 const qwerty = document.getElementById('qwerty');
 const buttons = qwerty.getElementsByTagName('button');
@@ -18,19 +18,44 @@ let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
+// EVENT LISTENERS...................................................................
+
 // EVENT LISTENER FOR START OF GAME:
 
 startButton.addEventListener('click', () => {
   newGame();
 });
 
-//PICK RANDOM PHRASE FROM ARRAY
+// EVENT LISTENER FOR CLICKING QWERTY KEYBOARD AREA:
+
+qwerty.addEventListener("click", checkLetter);
+
+// FUNCTIONS .......................................................................................
+
+// NEW GAME FUNCTION
+
+function newGame() {
+  restoreHearts();
+  startButton.innerHTML = "Play Again?";
+  missedResponse = 0;
+  chosen = [];
+  list.innerHTML = "";
+  show = [];
+  showLetters = [];
+  questionArray = [];
+  questionPhrase = randomPhrase(phrases).toUpperCase();
+  overlay.style.display = "none";
+  randomPhrase(phrases);
+  makeQuestionLetters(questionPhrase);
+};
+
+// PICK RANDOM PHRASE FROM ARRAY
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
 };
 
-// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY
+// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY:
 
 function makeQuestionLetters() {
   let letter = document.createElement('li');
@@ -50,17 +75,7 @@ function makeQuestionLetters() {
   }
 };
 
-// APPEND CHILD FUNCTION
-
-function appendChild() {
-  item.appendChild(document.createTextNode(gameLetters[i]));
-  letter.appendChild(item);
-  list.appendChild(letter);
-}
-
-// EVENT LISTENER FOR CLICKING QWERTY KEYBOARD AREA:
-
-qwerty.addEventListener("click", checkLetter);
+// CHECK LETTER FUNCTION:
 
 function checkLetter(e) {
   let userInput = e.target.innerHTML.toUpperCase();
@@ -87,24 +102,16 @@ function checkLetter(e) {
   }}
 };
 
-// NEW GAME FUNCTION
+// APPEND CHILD FUNCTION
 
-function newGame() {
-  restoreHearts();
-  startButton.innerHTML = "Play Again?";
-  missedResponse = 0;
-  chosen = [];
-  list.innerHTML = "";
-  show = [];
-  showLetters = [];
-  questionArray = [];
-  questionPhrase = randomPhrase(phrases).toUpperCase();
-  overlay.style.display = "none";
-  randomPhrase(phrases);
-  makeQuestionLetters(questionPhrase);
+function appendChild() {
+  item.appendChild(document.createTextNode(gameLetters[i]));
+  letter.appendChild(item);
+  list.appendChild(letter);
 };
 
-//CHECK WIN FUNCTION
+
+// CHECK WIN FUNCTION
 
 function checkWin() {
   let heading = document.querySelector('h2');
@@ -121,7 +128,7 @@ function checkWin() {
   } return ;
 };
 
-//FUNCTION TO RESTORE HEARTS AT START OF GAME
+// FUNCTION TO RESTORE HEARTS AT START OF GAME
 
 function restoreHearts() {
 for ( let i = 0; i < 5; i ++) {
