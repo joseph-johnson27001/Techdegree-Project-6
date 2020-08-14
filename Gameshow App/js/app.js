@@ -53,7 +53,6 @@ function newGame() {
   let questionArray = [];
   let questionPhrase = randomPhrase(phrases).toUpperCase();
   overlay.style.display = "none";
-  randomPhrase(phrases);
   makeQuestionLetters(questionPhrase);
 };
 
