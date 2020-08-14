@@ -1,6 +1,4 @@
-// ...................................................................
-// ARRAYS
-//..................................................................................
+// ARRAYS:
 
 const phrases = ['Its A Trap',
   'Luke Skywalker',
@@ -9,60 +7,30 @@ const phrases = ['Its A Trap',
   'Darth Vader'
 ]
 
-// ...................................................................
-// VARIABLES
-// ...............................................................................
+//VARIABLES:
 
 const qwerty = document.getElementById('qwerty');
 const buttons = qwerty.getElementsByTagName('button');
 const phrase = document.getElementById('phrase');
 const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
+let questionPhrase = randomPhrase(phrases).toUpperCase();
+let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
-// ...................................................................
-// EVENT LISTENERS
-// ...................................................................
-
-// EVENT LISTENER FOR START OF GAME:
+// Event listener for the Start Game
 
 startButton.addEventListener('click', () => {
   newGame();
 });
 
-// EVENT LISTENER FOR CLICKING QWERTY KEYBOARD AREA:
-
-qwerty.addEventListener("click", () => {
-  checkLetter();
-});
-
-// ...................................................................
-// FUNCTIONS
-// .......................................................................................
-
-// NEW GAME FUNCTION
-
-function newGame() {
-  restoreHearts();
-  startButton.innerHTML = "Play Again?";
-  let missedResponse = 0;
-  let chosen = [];
-  list.innerHTML = "";
-  let show = [];
-  let showLetters = [];
-  let questionArray = [];
-  let questionPhrase = randomPhrase(phrases).toUpperCase();
-  overlay.style.display = "none";
-  makeQuestionLetters(questionPhrase);
-};
-
-// PICK RANDOM PHRASE FROM ARRAY
+//PICK RANDOM PHRASE FROM ARRAY
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
 };
 
-// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY:
+// MAKE LETTERS FROM CHOSEN PHRASE INTO AN ARRAY
 
 function makeQuestionLetters() {
   let letter = document.createElement('li');
@@ -74,35 +42,32 @@ function makeQuestionLetters() {
     if ( gameLetters[i] !== ' ' ) {
       questionArray.push(gameLetters[i]);
       item.className = "letter";
-      appendChild()
+      item.appendChild(document.createTextNode(gameLetters[i]));
+      letter.appendChild(item);
+      list.appendChild(letter);
   } else {
       item.className = 'space';
-      appendChild()
+      item.appendChild(document.createTextNode(gameLetters[i]));
+      letter.appendChild(item);
+      list.appendChild(letter);
     }
   }
 };
 
-// APPEND CHILD FUNCTION
-
-function appendChild() {
-  item.appendChild(document.createTextNode(gameLetters[i]));
-  letter.appendChild(item);
-  list.appendChild(letter);
-};
-
-// CHECK LETTER FUNCTION:
+//EVENT LISTENER FOR USER CLICKING START BUTOTON
+qwerty.addEventListener("click", checkLetter);
 
 function checkLetter(e) {
   let userInput = e.target.innerHTML.toUpperCase();
   let letters = document.getElementsByClassName('letter');
     if (userInput.length !== 1 ) {
       return;
-  }
+    }
     if ( !chosen.includes(userInput) ) {
       chosen.push(userInput);
   } else {
       return;
-  }
+    }
   for ( let i = 0; i < questionArray.length; i++) {
     if ( !questionArray.includes(userInput) ) {
       missedResponse += 1;
@@ -117,7 +82,24 @@ function checkLetter(e) {
   }}
 };
 
-// CHECK WIN FUNCTION
+// NEW GAME Function
+
+function newGame() {
+  restoreHearts();
+  startButton.innerHTML = "Play Again?"
+  missedResponse = 0;
+  chosen = [];
+  list.innerHTML = "";
+  show = [];
+  showLetters = [];
+  questionArray = [];
+  questionPhrase = randomPhrase(phrases).toUpperCase();
+  overlay.style.display = "none";
+  randomPhrase(phrases);
+  makeQuestionLetters(questionPhrase);
+};
+
+//CHECK WIN FUNCTION
 
 function checkWin() {
   let heading = document.querySelector('h2');
@@ -125,18 +107,18 @@ function checkWin() {
   let showLetters = document.getElementsByClassName('show');
     if ( classLetters.length == showLetters.length ) {
       overlay.className = 'win';
-      heading.innerHTML = "CONGRATULATIONS. YOU WON!";
+      heading.innerHTML = "CONGRATULATIONS. YOU WON!"
       overlay.style.display = 'flex';
   } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
-      heading.innerHTML = "Sorry, You Lost!";
+      heading.innerHTML = "Sorry, You Lost!"
       overlay.style.display = 'flex';
   } return ;
 };
 
-// FUNCTION TO RESTORE HEARTS AT START OF GAME
+//FUNCTION TO RESTORE HEARTS AT START OF GAME
 
 function restoreHearts() {
-  for ( let i = 0; i < 5; i ++) {
-    hearts[i].src = "images/liveHeart.png";
-  }};
+for ( let i = 0; i < 5; i ++) {
+  hearts[i].src = "images/liveHeart.png"
+}};
