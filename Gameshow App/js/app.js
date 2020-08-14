@@ -110,7 +110,6 @@ function appendChild() {
   list.appendChild(letter);
 };
 
-
 // CHECK WIN FUNCTION
 
 function checkWin() {
