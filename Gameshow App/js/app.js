@@ -17,11 +17,11 @@ const list = document.querySelector('ul');
 let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
+
 // Event listener for the Start Game
 
 startButton.addEventListener('click', () => {
   newGame();
-  startButton.innerHTML = "Play Again?"
 });
 
 //PICK RANDOM PHRASE FROM ARRAY
@@ -86,6 +86,7 @@ function checkLetter(e) {
 
 function newGame() {
   restoreHearts();
+  startButton.innerHTML = "Play Again?"
   missedResponse = 0;
   chosen = [];
   list.innerHTML = "";
