@@ -1,4 +1,6 @@
-// ARRAYS..................................................................................
+// ...................................................................
+// ARRAYS
+//..................................................................................
 
 const phrases = ['Its A Trap',
   'Luke Skywalker',
@@ -7,7 +9,9 @@ const phrases = ['Its A Trap',
   'Darth Vader'
 ]
 
-// VARIABLES...............................................................................
+// ...................................................................
+// VARIABLES
+// ...............................................................................
 
 const qwerty = document.getElementById('qwerty');
 const buttons = qwerty.getElementsByTagName('button');
@@ -18,7 +22,9 @@ let questionPhrase = randomPhrase(phrases).toUpperCase();
 let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
-// EVENT LISTENERS...................................................................
+// ...................................................................
+// EVENT LISTENERS
+// ...................................................................
 
 // EVENT LISTENER FOR START OF GAME:
 
@@ -28,9 +34,13 @@ startButton.addEventListener('click', () => {
 
 // EVENT LISTENER FOR CLICKING QWERTY KEYBOARD AREA:
 
-qwerty.addEventListener("click", checkLetter);
+qwerty.addEventListener("click", () => {
+  checkLetter();
+});
 
-// FUNCTIONS .......................................................................................
+// ...................................................................
+// FUNCTIONS
+// .......................................................................................
 
 // NEW GAME FUNCTION
 
@@ -75,6 +85,14 @@ function makeQuestionLetters() {
   }
 };
 
+// APPEND CHILD FUNCTION
+
+function appendChild() {
+  item.appendChild(document.createTextNode(gameLetters[i]));
+  letter.appendChild(item);
+  list.appendChild(letter);
+};
+
 // CHECK LETTER FUNCTION:
 
 function checkLetter(e) {
@@ -100,14 +118,6 @@ function checkLetter(e) {
       show.push(userInput);
       checkWin();
   }}
-};
-
-// APPEND CHILD FUNCTION
-
-function appendChild() {
-  item.appendChild(document.createTextNode(gameLetters[i]));
-  letter.appendChild(item);
-  list.appendChild(letter);
 };
 
 // CHECK WIN FUNCTION
