@@ -58,7 +58,8 @@ function appendChild() {
   list.appendChild(letter);
 }
 
-// EVENT LISTENER FOR USER CLICKING START BUTOTON
+// EVENT LISTENER FOR CLICKING QWERTY KEYBOARD AREA:
+
 qwerty.addEventListener("click", checkLetter);
 
 function checkLetter(e) {
@@ -90,7 +91,7 @@ function checkLetter(e) {
 
 function newGame() {
   restoreHearts();
-  startButton.innerHTML = "Play Again?"
+  startButton.innerHTML = "Play Again?";
   missedResponse = 0;
   chosen = [];
   list.innerHTML = "";
@@ -111,11 +112,11 @@ function checkWin() {
   let showLetters = document.getElementsByClassName('show');
     if ( classLetters.length == showLetters.length ) {
       overlay.className = 'win';
-      heading.innerHTML = "CONGRATULATIONS. YOU WON!"
+      heading.innerHTML = "CONGRATULATIONS. YOU WON!";
       overlay.style.display = 'flex';
   } else if ( missedResponse > 4 ) {
       overlay.className = 'lose';
-      heading.innerHTML = "Sorry, You Lost!"
+      heading.innerHTML = "Sorry, You Lost!";
       overlay.style.display = 'flex';
   } return ;
 };
@@ -124,5 +125,5 @@ function checkWin() {
 
 function restoreHearts() {
 for ( let i = 0; i < 5; i ++) {
-  hearts[i].src = "images/liveHeart.png"
+  hearts[i].src = "images/liveHeart.png";
 }};
