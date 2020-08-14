@@ -140,6 +140,6 @@ function checkWin() {
 // FUNCTION TO RESTORE HEARTS AT START OF GAME
 
 function restoreHearts() {
-for ( let i = 0; i < 5; i ++) {
-  hearts[i].src = "images/liveHeart.png";
-}};
+  for ( let i = 0; i < 5; i ++) {
+    hearts[i].src = "images/liveHeart.png";
+  }};
