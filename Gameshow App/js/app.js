@@ -18,8 +18,6 @@ const buttons = qwerty.getElementsByTagName('button');
 const phrase = document.getElementById('phrase');
 const startButton = document.getElementsByClassName('btn__reset')[0];
 const list = document.querySelector('ul');
-let questionPhrase = randomPhrase(phrases).toUpperCase();
-let tries = document.getElementsByClassName('tries');
 let hearts = document.querySelectorAll('#scoreboard img');
 
 // ...................................................................
@@ -47,13 +45,13 @@ qwerty.addEventListener("click", () => {
 function newGame() {
   restoreHearts();
   startButton.innerHTML = "Play Again?";
-  missedResponse = 0;
-  chosen = [];
+  let missedResponse = 0;
+  let chosen = [];
   list.innerHTML = "";
-  show = [];
-  showLetters = [];
-  questionArray = [];
-  questionPhrase = randomPhrase(phrases).toUpperCase();
+  let show = [];
+  let showLetters = [];
+  let questionArray = [];
+  let questionPhrase = randomPhrase(phrases).toUpperCase();
   overlay.style.display = "none";
   randomPhrase(phrases);
   makeQuestionLetters(questionPhrase);
