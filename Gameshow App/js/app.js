@@ -39,13 +39,41 @@ qwerty.addEventListener("click", checkLetter);
 // FUNCTIONS
 //--------------------------------------------------------------------------
 
-//Pick random phrase from Array
+// New Game Function
+
+function newGame() {
+  restoreHearts();
+  startButton.innerHTML = "Play Again?"
+  missedResponse = 0;
+  chosen = [];
+  list.innerHTML = "";
+  show = [];
+  showLetters = [];
+  questionArray = [];
+  questionPhrase = randomPhrase(phrases).toUpperCase();
+  overlay.style.display = "none";
+  randomPhrase(phrases);
+  makeQuestionLetters(questionPhrase);
+};
+
+// Function to restore hearts at beginning of game
+
+function restoreHearts() {
+  for ( let i = 0; i < 5; i ++) {
+    hearts[i].src = "images/liveHeart.png";
+  }};
+
+// Pick random phrase from Array
 
 function randomPhrase(phrases) {
  return phrases[Math.floor(Math.random() * phrases.length)];
 };
 
-// Make letters from chosen phrase into an array
+// Reset ARRAYS
+
+
+// Make letters from chosen phrase into an array, make them list items and
+// show them on the screen
 
 function makeQuestionLetters() {
   let letter = document.createElement('li');
@@ -96,23 +124,6 @@ function checkLetter(e) {
   }}
 };
 
-// New Game Function
-
-function newGame() {
-  restoreHearts();
-  startButton.innerHTML = "Play Again?"
-  missedResponse = 0;
-  chosen = [];
-  list.innerHTML = "";
-  show = [];
-  showLetters = [];
-  questionArray = [];
-  questionPhrase = randomPhrase(phrases).toUpperCase();
-  overlay.style.display = "none";
-  randomPhrase(phrases);
-  makeQuestionLetters(questionPhrase);
-};
-
 //Check Win Function
 
 function checkWin() {
@@ -129,10 +140,3 @@ function checkWin() {
       overlay.style.display = 'flex';
   } return ;
 };
-
-// Function to restore hearts at beginning of game
-
-function restoreHearts() {
-  for ( let i = 0; i < 5; i ++) {
-    hearts[i].src = "images/liveHeart.png";
-  }};
