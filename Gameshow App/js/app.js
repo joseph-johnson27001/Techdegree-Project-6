@@ -6,7 +6,15 @@ const phrases = ['Its A Trap',
   'Luke Skywalker',
   'I Am Your Father',
   'Millennium Falcon',
-  'Darth Vader'
+  'Darth Vader',
+  'This Is The Way',
+  'Bobba Fett',
+  'The Kessel Run',
+  'So Be It Jedi',
+  'Help Me Obi Wan Kenobi',
+  'Star Destroyers',
+  'Thats No Moon',
+  'I Dont Like Sand'
 ]
 
 //--------------------------------------------------------------------------
